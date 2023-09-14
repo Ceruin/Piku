@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piku", "Piku.csproj", "{275CB84B-0260-4668-B7EF-FE9261EF887C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{275CB84B-0260-4668-B7EF-FE9261EF887C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{275CB84B-0260-4668-B7EF-FE9261EF887C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{275CB84B-0260-4668-B7EF-FE9261EF887C}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{275CB84B-0260-4668-B7EF-FE9261EF887C}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{275CB84B-0260-4668-B7EF-FE9261EF887C}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{275CB84B-0260-4668-B7EF-FE9261EF887C}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
