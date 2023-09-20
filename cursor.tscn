@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnlll8xgqfljr"]
+
+[ext_resource type="Script" path="res://cursor.cs" id="1_jamfp"]
+
+[node name="Cursor" type="Node3D"]
+script = ExtResource("1_jamfp")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
