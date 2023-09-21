@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://d0ws8dkp3sjkm"]
+[gd_scene load_steps=4 format=3 uid="uid://d0ws8dkp3sjkm"]
 
-[node name="Companion" type="Node3D"]
+[ext_resource type="PackedScene" uid="uid://d2acs06ogjtqu" path="res://Resources/KayKit-Character-Pack-Adventures-1.0-672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Assets/gltf/mug_full.gltf" id="1_36ar6"]
+[ext_resource type="Script" path="res://companion.cs" id="1_bgo26"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lw00o"]
+radius = 0.317011
+
+[node name="Companion" type="CharacterBody3D"]
+script = ExtResource("1_bgo26")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("1_36ar6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_lw00o")
