@@ -1,11 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1fi60dt7p2uf"]
+[gd_scene load_steps=7 format=3 uid="uid://b1fi60dt7p2uf"]
 
 [ext_resource type="Script" path="res://player.cs" id="1_y1fws"]
 [ext_resource type="PackedScene" uid="uid://oqdqtssqob7i" path="res://Resources/KayKit-Character-Pack-Adventures-1.0-672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Mage.glb" id="3_fxyt3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tg3k8"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wto5a"]
+
+[sub_resource type="Animation" id="Animation_1s5sd"]
+resource_name = "move_up"
+length = 1.2
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nspy0"]
+_data = {
+"move_up": SubResource("Animation_1s5sd")
+}
+
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 6
 script = ExtResource("1_y1fws")
 
 [node name="Pivot" type="Node3D" parent="."]
@@ -15,3 +28,19 @@ script = ExtResource("1_y1fws")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.936735, 0)
 shape = SubResource("CapsuleShape3D_tg3k8")
+
+[node name="CharacterDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.067908, 0, 0, 0, 1, 0, 0.364501, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterDetector"]
+shape = SubResource("CylinderShape3D_wto5a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nspy0")
+}
+
+[connection signal="body_entered" from="CharacterDetector" to="." method="OnCharacterDetectorBodyEntered"]

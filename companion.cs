@@ -12,6 +12,21 @@ public partial class companion : CharacterBody3D
     [Export]
     public int MaxSpeed { get; set; } = 18;
 
+    // Emitted when the player jumped on the mob.
+    [Signal]
+    public delegate void SquashedEventHandler();
+
+    private void OnVisibilityNotifierScreenExited()
+    {
+        QueueFree();
+    }
+
+    public void Squash()
+    {
+        EmitSignal(SignalName.Squashed);
+        QueueFree();
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         MoveAndSlide();
