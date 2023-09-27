@@ -1,10 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0ws8dkp3sjkm"]
+[gd_scene load_steps=6 format=3 uid="uid://d0ws8dkp3sjkm"]
 
 [ext_resource type="PackedScene" uid="uid://d2acs06ogjtqu" path="res://Resources/KayKit-Character-Pack-Adventures-1.0-672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Assets/gltf/mug_full.gltf" id="1_36ar6"]
 [ext_resource type="Script" path="res://companion.cs" id="1_bgo26"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lw00o"]
 radius = 0.317011
+
+[sub_resource type="Animation" id="Animation_56ouo"]
+resource_name = "move_up"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.7, 1.2),
+"transitions": PackedFloat32Array(0.482967, 2.07053, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.65, 0), Vector3(0, 0.35, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Character:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5, 1.2),
+"transitions": PackedFloat32Array(0.482967, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.139626, 0, 0), Vector3(-0.15708, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eqppw"]
+_data = {
+"move_up": SubResource("Animation_56ouo")
+}
 
 [node name="Companion" type="CharacterBody3D" groups=["companion"]]
 collision_layer = 2
@@ -14,6 +48,13 @@ script = ExtResource("1_bgo26")
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="Character" parent="Pivot" instance=ExtResource("1_36ar6")]
+transform = Transform3D(1, 0, 0, 0, 0.999941, 0.0109083, 0, -0.0109083, 0.999941, 0, 0.187153, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_lw00o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move_up"
+libraries = {
+"": SubResource("AnimationLibrary_eqppw")
+}

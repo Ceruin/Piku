@@ -49,5 +49,6 @@ public partial class companion : CharacterBody3D
         // We then rotate the velocity vector based on the mob's Y rotation
         // in order to move in the direction the mob is looking.
         Velocity = Velocity.Rotated(Vector3.Up, Rotation.Y);
+        GetNode<AnimationPlayer>("AnimationPlayer").SpeedScale = randomSpeed / MinSpeed;
     }
 }

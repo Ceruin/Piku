@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1fi60dt7p2uf"]
+[gd_scene load_steps=8 format=3 uid="uid://b1fi60dt7p2uf"]
 
 [ext_resource type="Script" path="res://player.cs" id="1_y1fws"]
 [ext_resource type="PackedScene" uid="uid://oqdqtssqob7i" path="res://Resources/KayKit-Character-Pack-Adventures-1.0-672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Mage.glb" id="3_fxyt3"]
@@ -11,9 +11,61 @@
 resource_name = "move_up"
 length = 1.2
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.7, 1.2),
+"transitions": PackedFloat32Array(0.482967, 2.07053, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.65, 0), Vector3(0, 0.35, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Character:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5, 1.2),
+"transitions": PackedFloat32Array(0.482967, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.139626, 0, 0), Vector3(-0.15708, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o3vns"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Character:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nspy0"]
 _data = {
+"RESET": SubResource("Animation_o3vns"),
 "move_up": SubResource("Animation_1s5sd")
 }
 
@@ -39,6 +91,7 @@ monitorable = false
 shape = SubResource("CylinderShape3D_wto5a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move_up"
 libraries = {
 "": SubResource("AnimationLibrary_nspy0")
 }
