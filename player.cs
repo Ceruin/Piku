@@ -35,36 +35,52 @@ public partial class player : CharacterBody3D
 	{
 		// We create a local variable to store the input direction.
 		var direction = Vector3.Zero;
+		int facing = 0;
 
 		// We check for each move input and update the direction accordingly.
 		if (Input.IsActionPressed("move_right"))
 		{
 			direction.X += 1.0f;
+			facing = 0;
 		}
 		if (Input.IsActionPressed("move_left"))
 		{
 			direction.X -= 1.0f;
-		}
+			facing = 0;
+			GetNode<Sprite3D>("Sprite3D").FlipH = true;
+            // todo: flip sprite
+        }
 		if (Input.IsActionPressed("move_back"))
 		{
-			// Notice how we are working with the vector's X and Z axes.
-			// In 3D, the XZ plane is the ground plane.
 			direction.Z += 1.0f;
+			facing = 1;
 		}
 		if (Input.IsActionPressed("move_forward"))
 		{
 			direction.Z -= 1.0f;
+			facing = 2;
 		}
 
 		if (direction != Vector3.Zero)
 		{
 			direction = direction.Normalized();
 			GetNode<Node3D>("Pivot").LookAt(Position + direction, Vector3.Up);
-            GetNode<AnimationPlayer>("AnimationPlayer").SpeedScale = 4;
+            //GetNode<AnimationPlayer>("AnimationPlayer").SpeedScale = 4;
+			
         }
         else
         {
-            GetNode<AnimationPlayer>("AnimationPlayer").SpeedScale = 1;
+            facing = 4;
+            //GetNode<AnimationPlayer>("AnimationPlayer").SpeedScale = 1;
+        }
+
+		var sprite = GetNode<Sprite3D>("Sprite3D");
+        // Play the first 3 frames of the animation.
+        for (int i = facing; i < 3; i++)
+        {
+            sprite.Frame = i;
+			// Wait for a short period of time.
+			OS.DelayMsec(100);
         }
 
         // Ground velocity
